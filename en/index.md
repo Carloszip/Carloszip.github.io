@@ -1,3 +1,7 @@
+---
+layout: default
+lang: en
+---
 # Carloszip.github.io
 This is the main page of my website. The idea is to use it a bit as a catch-all space…
 
