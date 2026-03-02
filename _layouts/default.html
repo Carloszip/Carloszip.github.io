@@ -18,6 +18,13 @@
           position: sticky;      /* Opcional: la barra se queda fija al hacer scroll */
           top: 40px;
         }
+        <nav style="margin-bottom: 20px;">
+          {% if page.lang == 'en' %}
+            <a href="{{ '/' | relative_url }}" style="font-weight: bold;">[ ESPAÑOL ]</a>
+          {% else %}
+            <a href="{{ '/en/' | relative_url }}" style="font-weight: bold;">[ ENGLISH ]</a>
+          {% endif %}
+        </nav>
         section {
           flex-grow: 1;          /* El contenido ocupa el resto del espacio */
         }
