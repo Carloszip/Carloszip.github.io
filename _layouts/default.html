@@ -6,27 +6,20 @@
     <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
     
     <style>
-      /* 1. FORZAMOS EL ANCHO COMPLETO */
-      .wrapper {
-        max-width: 1100px !important; /* Hace que el contenido ocupe mucho más ancho de pantalla */
-        width: 90%;
-        margin: 0 auto;
-        padding-top: 40px;
-      }
-
-      /* 2. ESTRUCTURA DE DOS COLUMNAS */
       @media screen and (min-width: 960px) {
         .wrapper {
-          display: flex;
-          flex-direction: row;
-          gap: 60px; /* Da aire entre la barra izquierda y el texto */
+          display: flex;         /* Convierte el contenedor en una fila */
+          flex-direction: row;   /* Alinea hijos (header y section) de izquierda a derecha */
+          gap: 40px;             /* Da espacio entre la barra y el contenido */
         }
         header {
-          width: 280px;
-          flex-shrink: 0;
+          width: 280px;          /* Define un ancho fijo para tu barra lateral */
+          flex-shrink: 0;        /* Evita que la barra se encoja */
+          position: sticky;      /* Opcional: la barra se queda fija al hacer scroll */
+          top: 40px;
         }
         section {
-          flex-grow: 1;
+          flex-grow: 1;          /* El contenido ocupa el resto del espacio */
         }
       }
     </style>
