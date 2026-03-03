@@ -8,15 +8,19 @@
     <style>
       @media screen and (min-width: 960px) {
         .wrapper {
-          display: flex;         /* Convierte el contenedor en una fila */
-          flex-direction: row;   /* Alinea hijos (header y section) de izquierda a derecha */
-          gap: 40px;             /* Da espacio entre la barra y el contenido */
+          display: flex;
+          flex-direction: row;
+          gap: 40px;
+          max-width: 1300px; /* Esto hace que el tope sea mucho más ancho */
+          width: 95%; /* Hace que ocupe el 95% de la pantalla */
+          margin: 0 auto; /* Mantiene todo el bloque centrado */
         }
         header {
-          width: 280px;          /* Define un ancho fijo para tu barra lateral */
-          flex-shrink: 0;        /* Evita que la barra se encoja */
-          position: sticky;      /* Opcional: la barra se queda fija al hacer scroll */
+          width: 280px;
+          flex-shrink: 0;
+          position: sticky;
           top: 40px;
+          align-self: flex-start; /* ¡Esto es lo que faltaba para que funcione el sticky! */
         }
         section {
           flex-grow: 1;          /* El contenido ocupa el resto del espacio */
@@ -72,9 +76,9 @@
       <header>
         <nav style="margin-bottom: 30px;">
           {% if page.lang == 'en' %}
-            <a href="{{ '/' | relative_url }}" style="color: black; font-weight: bold; background: #fae1d7; padding: 6px 12px; border-radius: 6px; text-decoration: none; border: 1px solid #d0d7de;">🇪🇸 ESPAÑOL</a>
+            <a href="{{ page.url | remove_first: '/en' | relative_url }}" style="color: black; font-weight: bold; background: #fae1d7; padding: 6px 12px; border-radius: 6px; text-decoration: none; border: 1px solid #d0d7de;">🇪🇸 ESPAÑOL</a>
           {% else %}
-            <a href="{{ '/en/' | relative_url }}" style="color: black; font-weight: bold; background: #fae1d7; padding: 6px 12px; border-radius: 6px; text-decoration: none; border: 1px solid #d0d7de;">🇬🇧 ENGLISH</a>
+            <a href="{{ '/en' | append: page.url | relative_url }}" style="color: black; font-weight: bold; background: #fae1d7; padding: 6px 12px; border-radius: 6px; text-decoration: none; border: 1px solid #d0d7de;">🇬🇧 ENGLISH</a>
           {% endif %}
         </nav>
 
