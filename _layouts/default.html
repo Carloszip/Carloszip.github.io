@@ -27,26 +27,31 @@
         display: flex;
         justify-content: flex-start;
         gap: 20px;
-        background-color: #dd0000;
+        background-color: #cc0000;
         padding: 15px 20px;
         margin-bottom: 30px;
       }
       .top-nav a {
         text-decoration: none;
-        color: black;
+        color: white;
         font-weight: bold;
         padding: 8px 16px;
         border-radius: 6px;
         transition: background-color 0.2s;
       }
       .top-nav a:hover {
+        color: black;
         background-color: white; /* Color al pasar el ratón */
       }
       /* Esto hace que todos los enlaces (etiquetas <a>) sean rojos */
       a {
-        color: #770000; /* Un rojo oscuro, más legible que el rojo puro */
+        color: #cc0000; /* Un rojo oscuro, más legible que el rojo puro */
         text-decoration: underline; /* Opcional: mantiene el subrayado si quieres */
       }
+      a:hover {
+          color: #cc0000; /* Un rojo más brillante cuando pasas el cursor */
+          text-decoration: none; /* Opcional: quita el subrayado al pasar el ratón */
+        }
     </style>
   </head>
   <body>
@@ -67,9 +72,9 @@
       <header>
         <nav style="margin-bottom: 30px;">
           {% if page.lang == 'en' %}
-            <a href="{{ '/' | relative_url }}" style="color: black; font-weight: bold; background: #f0f6fc; padding: 6px 12px; border-radius: 6px; text-decoration: none; border: 1px solid #d0d7de;">🇪🇸 ESPAÑOL</a>
+            <a href="{{ '/' | relative_url }}" style="color: black; font-weight: bold; background: #ffd0bd; padding: 6px 12px; border-radius: 6px; text-decoration: none; border: 1px solid #d0d7de;">🇪🇸 ESPAÑOL</a>
           {% else %}
-            <a href="{{ '/en/' | relative_url }}" style="color: black; font-weight: bold; background: #f0f6fc; padding: 6px 12px; border-radius: 6px; text-decoration: none; border: 1px solid #d0d7de;">🇬🇧 ENGLISH</a>
+            <a href="{{ '/en/' | relative_url }}" style="color: black; font-weight: bold; background: #ffd0bd; padding: 6px 12px; border-radius: 6px; text-decoration: none; border: 1px solid #d0d7de;">🇬🇧 ENGLISH</a>
           {% endif %}
         </nav>
 
