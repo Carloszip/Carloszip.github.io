@@ -22,9 +22,42 @@
           flex-grow: 1;          /* El contenido ocupa el resto del espacio */
         }
       }
+      /* Estilos para la nueva barra superior */
+      .top-nav {
+        display: flex;
+        justify-content: center; /* Centra las pestañas. Cámbialo a flex-start si las quieres a la izquierda */
+        gap: 20px;
+        background-color: #f0f6fc;
+        padding: 15px 20px;
+        border-bottom: 1px solid #d0d7de;
+        margin-bottom: 30px;
+      }
+      .top-nav a {
+        text-decoration: none;
+        color: #0969da;
+        font-weight: bold;
+        padding: 8px 16px;
+        border-radius: 6px;
+        transition: background-color 0.2s;
+      }
+      .top-nav a:hover {
+        background-color: #d0d7de; /* Color al pasar el ratón */
+      }
     </style>
   </head>
   <body>
+    <nav class="top-nav">
+      {% if page.lang == 'en' %}
+        <a href="{{ '/en/' | relative_url }}">Home</a>
+        <a href="{{ '/en/projects/' | relative_url }}">Projects</a>
+        <a href="{{ '/en/about/' | relative_url }}">About me</a>
+      {% else %}
+        <a href="{{ '/' | relative_url }}">Inicio</a>
+        <a href="{{ '/proyectos/' | relative_url }}">Proyectos</a>
+        <a href="{{ '/sobre-mi/' | relative_url }}">Sobre mí</a>
+      {% endif %}
+    </nav>
+    
     <div class="wrapper">
       
       <header>
