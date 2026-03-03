@@ -25,34 +25,27 @@
       /* Estilos para la nueva barra superior */
       .top-nav {
         display: flex;
-        justify-content: center; /* Centra las pestañas. Cámbialo a flex-start si las quieres a la izquierda */
+        justify-content: flex-start;
         gap: 20px;
-        background-color: #f0f6fc;
+        background-color: #dd0000;
         padding: 15px 20px;
-        border-bottom: 1px solid #d0d7de;
         margin-bottom: 30px;
       }
       .top-nav a {
         text-decoration: none;
-        color: #0969da;
+        color: black;
         font-weight: bold;
         padding: 8px 16px;
         border-radius: 6px;
         transition: background-color 0.2s;
       }
       .top-nav a:hover {
-        background-color: #d0d7de; /* Color al pasar el ratón */
+        background-color: white; /* Color al pasar el ratón */
       }
       /* Esto hace que todos los enlaces (etiquetas <a>) sean rojos */
       a {
-        color: #cc0000; /* Un rojo oscuro, más legible que el rojo puro */
+        color: #770000; /* Un rojo oscuro, más legible que el rojo puro */
         text-decoration: underline; /* Opcional: mantiene el subrayado si quieres */
-      }
-
-      /* Opcional: cambia el color cuando pasas el ratón por encima (hover) */
-      a:hover {
-        color: #ff0000; /* Un rojo más brillante cuando pasas el cursor */
-        text-decoration: none; /* Opcional: quita el subrayado al pasar el ratón */
       }
     </style>
   </head>
@@ -74,13 +67,13 @@
       <header>
         <nav style="margin-bottom: 30px;">
           {% if page.lang == 'en' %}
-            <a href="{{ '/' | relative_url }}" style="font-weight: bold; background: #f0f6fc; padding: 6px 12px; border-radius: 6px; text-decoration: none; border: 1px solid #d0d7de;">🇪🇸 ESPAÑOL</a>
+            <a href="{{ '/' | relative_url }}" style="color: black; font-weight: bold; background: #f0f6fc; padding: 6px 12px; border-radius: 6px; text-decoration: none; border: 1px solid #d0d7de;">🇪🇸 ESPAÑOL</a>
           {% else %}
-            <a href="{{ '/en/' | relative_url }}" style="font-weight: bold; background: #f0f6fc; padding: 6px 12px; border-radius: 6px; text-decoration: none; border: 1px solid #d0d7de;">🇬🇧 ENGLISH</a>
+            <a href="{{ '/en/' | relative_url }}" style="color: black; font-weight: bold; background: #f0f6fc; padding: 6px 12px; border-radius: 6px; text-decoration: none; border: 1px solid #d0d7de;">🇬🇧 ENGLISH</a>
           {% endif %}
         </nav>
 
-        <h1><a href="{{ "/" | absolute_url }}">{{ site.title | default: site.github.repository_name }}</a></h1>
+        <h1>{{ site.title | default: site.github.repository_name }}</h1>
         <p>
           {% if page.lang == 'en' %}
             Welcome to my webpage!<br>Here are some links:
