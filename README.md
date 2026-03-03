@@ -1,7 +1,3 @@
----
-layout: default
-lang: es
----
 # Carloszip.github.io
 Esta es la página principal de mi página web. La intención es utilizarla un poco de cajón de sastre...
 
