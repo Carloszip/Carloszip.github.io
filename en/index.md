@@ -2,7 +2,7 @@
 layout: default
 lang: en
 ---
-# Carloszip.github.io
+# Home
 This is the main page of my website. The idea is to use it a bit as a catch-all space…
 
 My name is Carlos. I studied Mathematics at the University of Salamanca and I am currently pursuing a master’s degree at the Rheinische Friedrich-Wilhelms-Universität Bonn. I am specialising in Algebraic Geometry and deciding if I want to pursue a PhD and continue with an academic career. You can see my [CV here 📄](https://carloszip.github.io/assets/CV.pdf).

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: 'es' }}">
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+    <link rel="stylesheet" href="/assets/css/style.css?v=0fe4c1c8fa0b9beb156f2e524b99e597432e9ae9">
     
     <style>
       @media screen and (min-width: 960px) {
@@ -101,67 +101,56 @@
   </head>
   <body>
     <nav class="top-nav">
-      {% if page.lang == 'en' %}
-        <a href="{{ '/en/' | relative_url }}">Home</a>
-        <a href="{{ '/en/updates/' | relative_url }}">Updates</a>
-        <a href="{{ '/en/Beemovie/' | relative_url }}">Bee Movie</a>
-      {% else %}
-        <a href="{{ '/' | relative_url }}">Inicio</a>
-        <a href="{{ '/updates/' | relative_url }}">Novedades</a>
-        <a href="{{ '/Beemovie/' | relative_url }}">Bee Movie</a>
-      {% endif %}
+      
+        <a href="/en/">Home</a>
+        <a href="/en/updates/">Updates</a>
+        <a href="/en/Beemovie/">Bee Movie</a>
+      
     </nav>
     
     <div class="wrapper">
       
       <header>
         <nav style="margin-bottom: 30px;">
-          {% if page.lang == 'en' %}
-            <a href="{{ page.url | remove_first: '/en' | relative_url }}" style="color: black; font-weight: bold; background: #fae1d7; padding: 6px 12px; border-radius: 6px; text-decoration: none; border: 1px solid #d0d7de;">🇪🇸 ESPAÑOL</a>
-          {% else %}
-            <a href="{{ '/en' | append: page.url | relative_url }}" style="color: black; font-weight: bold; background: #fae1d7; padding: 6px 12px; border-radius: 6px; text-decoration: none; border: 1px solid #d0d7de;">🇬🇧 ENGLISH</a>
-          {% endif %}
+          
+            <a href="/" style="color: black; font-weight: bold; background: #fae1d7; padding: 6px 12px; border-radius: 6px; text-decoration: none; border: 1px solid #d0d7de;">🇪🇸 ESPAÑOL</a>
+          
         </nav>
 
-        <h1>{{ site.title | default: site.github.repository_name }}</h1>
+        <h1>Carlos González Bueno</h1>
         <p>
-          {% if page.lang == 'en' %}
+          
             Welcome to my webpage!<br>Here are some links:
-          {% else %}
-            ¡Bienvenido a mi página web!<br>Aquí tienes algunos enlaces:
-          {% endif %}
+          
         </p>
         
         <p>
-          {% if page.lang == 'en' %}
+          
             <a href="mailto:cgb314@usal.es">📧 Send me an Email</a><br>
             <a href="https://x.com/carlosgb314">🐦 My Twitter</a>
-          {% else %}
-            <a href="mailto:cgb314@usal.es">📧 Envíame un email</a><br>
-            <a href="https://x.com/carlosgb314">🐦 Mi Twitter</a>
-          {% endif %}
+          
         </p>
 
-        {% if site.github.is_project_page %}
-        <p class="view">
-          <a href="{{ site.github.repository_url }}">
-            {% if page.lang == 'en' %}View the Project on GitHub{% else %}El proyecto en GitHub{% endif %}
-            <small>{{ site.github.repository_nwo }}</small>
-          </a>
-        </p>
-        {% endif %}
         
-        {% if site.github.is_user_page %}
         <p class="view">
-          <a href="{{ site.github.owner_url }}">
-            {% if page.lang == 'en' %}View My GitHub Profile{% else %}Mi perfil de GitHub{% endif %}
+          <a href="https://github.com/Carloszip/Carloszip.github.io">
+            View the Project on GitHub
+            <small>Carloszip/Carloszip.github.io</small>
           </a>
         </p>
-        {% endif %}
+        
+        
+        
       </header>
       
       <section>
-        {{ content }}
+        <h1 id="home">Home</h1>
+<p>This is the main page of my website. The idea is to use it a bit as a catch-all space…</p>
+
+<p>My name is Carlos. I studied Mathematics at the University of Salamanca and I am currently pursuing a master’s degree at the Rheinische Friedrich-Wilhelms-Universität Bonn. I am specialising in Algebraic Geometry and deciding if I want to pursue a PhD and continue with an academic career. You can see my <a href="https://carloszip.github.io/assets/CV.pdf">CV here 📄</a>.</p>
+
+<p>I really like Rubik’s cubes, playing video games, and watching series and films. I hold a black belt in judo, play the piano as an amateur, and I love riding my motorbike. I try not to let myself stay still for too long.</p>
+
       </section>
 
     </div>

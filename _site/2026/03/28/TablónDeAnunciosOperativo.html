@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: 'es' }}">
+<html lang="es">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ "/assets/css/style.css?v=" | append: site.github.build_revision | relative_url }}">
+    <link rel="stylesheet" href="/assets/css/style.css?v=0fe4c1c8fa0b9beb156f2e524b99e597432e9ae9">
     
     <style>
       @media screen and (min-width: 960px) {
@@ -101,67 +101,51 @@
   </head>
   <body>
     <nav class="top-nav">
-      {% if page.lang == 'en' %}
-        <a href="{{ '/en/' | relative_url }}">Home</a>
-        <a href="{{ '/en/updates/' | relative_url }}">Updates</a>
-        <a href="{{ '/en/Beemovie/' | relative_url }}">Bee Movie</a>
-      {% else %}
-        <a href="{{ '/' | relative_url }}">Inicio</a>
-        <a href="{{ '/updates/' | relative_url }}">Novedades</a>
-        <a href="{{ '/Beemovie/' | relative_url }}">Bee Movie</a>
-      {% endif %}
+      
+        <a href="/">Inicio</a>
+        <a href="/updates/">Novedades</a>
+        <a href="/Beemovie/">Bee Movie</a>
+      
     </nav>
     
     <div class="wrapper">
       
       <header>
         <nav style="margin-bottom: 30px;">
-          {% if page.lang == 'en' %}
-            <a href="{{ page.url | remove_first: '/en' | relative_url }}" style="color: black; font-weight: bold; background: #fae1d7; padding: 6px 12px; border-radius: 6px; text-decoration: none; border: 1px solid #d0d7de;">🇪🇸 ESPAÑOL</a>
-          {% else %}
-            <a href="{{ '/en' | append: page.url | relative_url }}" style="color: black; font-weight: bold; background: #fae1d7; padding: 6px 12px; border-radius: 6px; text-decoration: none; border: 1px solid #d0d7de;">🇬🇧 ENGLISH</a>
-          {% endif %}
+          
+            <a href="/en/2026/03/28/Tabl%C3%B3nDeAnunciosOperativo.html" style="color: black; font-weight: bold; background: #fae1d7; padding: 6px 12px; border-radius: 6px; text-decoration: none; border: 1px solid #d0d7de;">🇬🇧 ENGLISH</a>
+          
         </nav>
 
-        <h1>{{ site.title | default: site.github.repository_name }}</h1>
+        <h1>Carlos González Bueno</h1>
         <p>
-          {% if page.lang == 'en' %}
-            Welcome to my webpage!<br>Here are some links:
-          {% else %}
+          
             ¡Bienvenido a mi página web!<br>Aquí tienes algunos enlaces:
-          {% endif %}
+          
         </p>
         
         <p>
-          {% if page.lang == 'en' %}
-            <a href="mailto:cgb314@usal.es">📧 Send me an Email</a><br>
-            <a href="https://x.com/carlosgb314">🐦 My Twitter</a>
-          {% else %}
+          
             <a href="mailto:cgb314@usal.es">📧 Envíame un email</a><br>
             <a href="https://x.com/carlosgb314">🐦 Mi Twitter</a>
-          {% endif %}
+          
         </p>
 
-        {% if site.github.is_project_page %}
-        <p class="view">
-          <a href="{{ site.github.repository_url }}">
-            {% if page.lang == 'en' %}View the Project on GitHub{% else %}El proyecto en GitHub{% endif %}
-            <small>{{ site.github.repository_nwo }}</small>
-          </a>
-        </p>
-        {% endif %}
         
-        {% if site.github.is_user_page %}
         <p class="view">
-          <a href="{{ site.github.owner_url }}">
-            {% if page.lang == 'en' %}View My GitHub Profile{% else %}Mi perfil de GitHub{% endif %}
+          <a href="https://github.com/Carloszip/Carloszip.github.io">
+            El proyecto en GitHub
+            <small>Carloszip/Carloszip.github.io</small>
           </a>
         </p>
-        {% endif %}
+        
+        
+        
       </header>
       
       <section>
-        {{ content }}
+        <p>El sistema de novedades funciona. Es verdad que lo he vibecodeado un poco, así que habrá que estar atento…</p>
+
       </section>
 
     </div>
