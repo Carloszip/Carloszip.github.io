@@ -1,0 +1,14 @@
+---
+layout: default
+---
+<article>
+  <h1 style="color: black; margin-bottom: 5px;">{{ page.title }}</h1>
+  
+  <p style="color: #666; font-size: 0.9em; margin-top: 0; margin-bottom: 30px;">
+    {{ page.date | date: "%d/%m/%Y" }}
+  </p>
+  
+  <div class="post-content">
+    {{ content }}
+  </div>
+</article>

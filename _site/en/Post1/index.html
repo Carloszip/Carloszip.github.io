@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/assets/css/style.css?v=0fe4c1c8fa0b9beb156f2e524b99e597432e9ae9">
+    <link rel="stylesheet" href="/assets/css/style.css?v=2487bfcbef4a4680c874c9caf8b79a1e0dd56fd0">
     
     <style>
       @media screen and (min-width: 960px) {
@@ -42,7 +42,7 @@
         color: white;
         font-weight: bold;
         padding: 8px 16px;
-        border-radius: 6px;
+        border-radius: 8px;
         transition: background-color 0.2s;
       }
       .top-nav a:hover {
@@ -61,18 +61,19 @@
       
       /* Estilos para las tarjetas de noticias */
       .news-card {
-        background: #fff;
-        border: 1px solid #e1e4e8;
+        position: relative;
+        background: white;
+        border: 1px solid #ccc;
         border-radius: 8px;
         padding: 20px;
         margin-bottom: 20px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         transition: transform 0.2s;
       }
 
       .news-card:hover {
         transform: translateY(-3px);
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
       }
 
       .news-date {
@@ -87,15 +88,43 @@
         color: #cc0000; /* Usamos tu rojo corporativo */
       }
 
-      .news-tag {
+      /* Capa invisible que expande el enlace a toda la tarjeta */
+      .news-title a::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+      }
+
+      /* Quita el subrayado del título en la tarjeta */
+      .news-title a {
+        text-decoration: none;
+      }
+
+      /* Estilos para el botón de cambio de idioma */
+      .lang-btn {
         display: inline-block;
-        background: #fae1d7;
-        color: #000;
-        padding: 2px 8px;
-        border-radius: 4px;
-        font-size: 0.75em;
         font-weight: bold;
-        margin-bottom: 10px;
+        padding: 6px 14px;
+        border-radius: 8px;
+        text-decoration: none; /* Forza que no haya subrayado */
+        transition: all 0.2s ease;
+        
+        /* Colores corporativos */
+        background-color: #fd9;
+        color: black;
+        border: 2px solid #df8050;
+      }
+
+      /* Efecto reactivo (Hover) */
+      .lang-btn:hover {
+        background-color: #cc0000;
+        color: #ffffff;
+        border: 2px solid #cc0000;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave roja */
       }
     </style>
   </head>
@@ -113,7 +142,7 @@
       <header>
         <nav style="margin-bottom: 30px;">
           
-            <a href="/2026/03/28/HelloWorldEn.html" style="color: black; font-weight: bold; background: #fae1d7; padding: 6px 12px; border-radius: 6px; text-decoration: none; border: 1px solid #d0d7de;">🇪🇸 ESPAÑOL</a>
+            <a href="/Post1/" class="lang-btn">🇪🇸 ESPAÑOL</a>
           
         </nav>
 
@@ -144,8 +173,18 @@
       </header>
       
       <section>
-        <p>Yada yada yada… It works.</p>
+        <article>
+  <h1 style="color: black; margin-bottom: 5px;">Hello World</h1>
+  
+  <p style="color: #666; font-size: 0.9em; margin-top: 0; margin-bottom: 30px;">
+    28/03/2026
+  </p>
+  
+  <div class="post-content">
+    <p>Yada yada yada… It works.</p>
 
+  </div>
+</article>
       </section>
 
     </div>
