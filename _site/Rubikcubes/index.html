@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/assets/css/style.css?v=af4f4ac9ad002ed6daadc440bc84aaba38b50e33">
+    
+    <style>
+      @media screen and (min-width: 960px) {
+        .wrapper {
+          display: flex;
+          flex-direction: row;
+          gap: 40px;
+          max-width: 1300px; /* Esto hace que el tope sea mucho más ancho */
+          width: 95%; /* Hace que ocupe el 95% de la pantalla */
+          margin: 0 auto; /* Mantiene todo el bloque centrado */
+        }
+        header {
+          width: 280px;
+          flex-shrink: 0;
+          position: sticky;
+          top: 40px;
+          align-self: flex-start; /* ¡Esto es lo que faltaba para que funcione el sticky! */
+        }
+        section {
+          flex-grow: 1; /* El contenido ocupa el resto del espacio */
+        }
+      }
+
+      /* Estilos para la nueva barra superior */
+      .top-nav {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 20px;
+        background-color: #cc0000;
+        padding: 15px 20px;
+        margin-bottom: 30px;
+      }
+      .top-nav a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+        padding: 8px 16px;
+        border-radius: 8px;
+        transition: background-color 0.2s;
+      }
+      .top-nav a:hover {
+        color: black;
+        background-color: white; /* Color al pasar el ratón */
+      }
+      /* Esto hace que todos los enlaces (etiquetas <a>) sean rojos */
+      a {
+        color: #cc0000; /* Un rojo oscuro, más legible que el rojo puro */
+        text-decoration: underline; /* Opcional: mantiene el subrayado si quieres */
+      }
+      a:hover {
+          color: #cc0000; /* Un rojo más brillante cuando pasas el cursor */
+          text-decoration: none; /* Opcional: quita el subrayado al pasar el ratón */
+        }
+      
+      /* Estilos para las tarjetas de noticias */
+      .news-card {
+        position: relative;
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        transition: transform 0.2s;
+      }
+
+      .news-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      }
+
+      .news-date {
+        font-size: 0.85em;
+        color: #666;
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .news-title {
+        margin-top: 0;
+        color: #cc0000; /* Usamos tu rojo corporativo */
+      }
+
+      /* Capa invisible que expande el enlace a toda la tarjeta */
+      .news-title a::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 1;
+      }
+
+      /* Quita el subrayado del título en la tarjeta */
+      .news-title a {
+        text-decoration: none;
+      }
+
+      /* Estilos para el botón de cambio de idioma */
+      .lang-btn {
+        display: inline-block;
+        font-weight: bold;
+        padding: 6px 14px;
+        border-radius: 8px;
+        text-decoration: none; /* Forza que no haya subrayado */
+        transition: all 0.2s ease;
+        
+        /* Colores corporativos */
+        background-color: #fd9;
+        color: black;
+        border: 2px solid #df8050;
+      }
+
+      /* Efecto reactivo (Hover) */
+      .lang-btn:hover {
+        background-color: #cc0000;
+        color: #ffffff;
+        border: 2px solid #cc0000;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave roja */
+      }
+      /* Cuadrícula de Cubos (CSS Grid) */
+      .cubes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 20px;
+        margin-top: 25px;
+      }
+
+      .cube-card {
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: transform 0.2s, box-shadow 0.2s;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .cube-img-wrapper {
+        width: 100%;
+        height: 200px; /* Fuerza a que todas las fotos tengan la misma altura */
+        overflow: hidden;
+        background: #f5f5f5;
+      }
+
+      .cube-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Recorta la imagen inteligentemente para que no se deforme */
+      }
+
+      .cube-info {
+        padding: 15px;
+        flex-grow: 1;
+      }
+
+      .cube-title {
+        margin: 0 0 8px 0;
+        font-size: 1.1em;
+        color: #cc0000; /* Tu rojo corporativo */
+      }
+
+      .cube-desc {
+        margin: 0;
+        font-size: 0.9em;
+        color: #555;
+        line-height: 1.4;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="top-nav">
+      
+        <a href="/">Inicio</a>
+        <a href="/updates/">Novedades</a>
+        <a href="/Beemovie/">Bee Movie</a>
+        <a href="/Rubikcubes/">Mis cubos</a>
+      
+    </nav>
+    
+    <div class="wrapper">
+      
+      <header>
+        <nav style="margin-bottom: 30px;">
+          
+            <a href="/en/Rubikcubes/" class="lang-btn">🇬🇧 ENGLISH</a>
+          
+        </nav>
+
+        <h1>Carlos González Bueno</h1>
+        <p>
+          
+            ¡Bienvenido a mi página web!<br>Aquí tienes algunos enlaces:
+          
+        </p>
+        
+        <p>
+          
+            <a href="mailto:cgb314@usal.es">📧 Envíame un email</a><br>
+            <a href="https://x.com/carlosgb314">🐦 Mi Twitter</a>
+          
+        </p>
+
+        
+        <p class="view">
+          <a href="https://github.com/Carloszip/Carloszip.github.io">
+            El proyecto en GitHub
+            <small>Carloszip/Carloszip.github.io</small>
+          </a>
+        </p>
+        
+        
+        
+      </header>
+      
+      <section>
+        <h1 id="mi-colección">Mi colección</h1>
+<p>¡Bienvenido a mi colección de cubos! De momento tengo <strong>86</strong>:</p>
+
+<div class="cubes-grid">
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/2x2%20Mirror.jpg" alt="2X2 Mirror" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">2X2 Mirror</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/2x2%20ale-hop.jpg" alt="2X2 Ale Hop" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">2X2 Ale Hop</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/2x2%20mini.jpg" alt="2X2 Mini" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">2X2 Mini</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/2x2.jpg" alt="2X2" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">2X2</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/2x2x1.jpg" alt="2X2X1" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">2X2X1</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/2x2x3.jpg" alt="2X2X3" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">2X2X3</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/3x3%20Rubik.jpg" alt="3X3 Rubik" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">3X3 Rubik</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/3x3%20again.jpg" alt="3X3 Again" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">3X3 Again</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/3x3%20ale-hop.jpg" alt="3X3 Ale Hop" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">3X3 Ale Hop</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/3x3%20candy.jpg" alt="3X3 Candy" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">3X3 Candy</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/3x3%20gay.jpg" alt="3X3 Gay" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">3X3 Gay</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/3x3%20gears%20sphere.jpg" alt="3X3 Gears Sphere" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">3X3 Gears Sphere</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/3x3%20mini.jpg" alt="3X3 Mini" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">3X3 Mini</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/3x3%20spirals.jpg" alt="3X3 Spirals" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">3X3 Spirals</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/3x3%20twisted.jpg" alt="3X3 Twisted" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">3X3 Twisted</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/3x3%20viejo.jpg" alt="3X3 Viejo" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">3X3 Viejo</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/3x3.jpg" alt="3X3" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">3X3</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/3x3x4.jpg" alt="3X3X4" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">3X3X4</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/4x4%20Rubik.jpg" alt="4X4 Rubik" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">4X4 Rubik</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/4x4%20skewed.jpg" alt="4X4 Skewed" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">4X4 Skewed</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/4x4.jpg" alt="4X4" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">4X4</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/5x5.jpg" alt="5X5" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">5X5</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/6x6.jpg" alt="6X6" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">6X6</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Coraz%C3%B3n.jpg" alt="Corazón" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Corazón</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Curvycopter.jpg" alt="Curvycopter" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Curvycopter</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Dino.jpg" alt="Dino" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Dino</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Domino.jpg" alt="Domino" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Domino</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/El%20cielo%20de%20Salamanca.jpg" alt="El Cielo De Salamanca" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">El Cielo De Salamanca</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Fisher's%20cube.jpg" alt="Fisher'S Cube" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Fisher'S Cube</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Floppy%20spinner.jpg" alt="Floppy Spinner" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Floppy Spinner</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Floppy.jpg" alt="Floppy" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Floppy</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Flowerminx.jpg" alt="Flowerminx" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Flowerminx</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Ghost.jpg" alt="Ghost" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Ghost</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Heat%20cube.jpg" alt="Heat Cube" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Heat Cube</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Helicopter.jpg" alt="Helicopter" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Helicopter</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Hollow.jpg" alt="Hollow" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Hollow</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Huevo%20de%20Meffert's.jpg" alt="Huevo De Meffert'S" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Huevo De Meffert'S</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/IMG_20240117_124905.jpg" alt="Img 20240117 124905" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Img 20240117 124905</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/IMG_20240117_125035.jpg" alt="Img 20240117 125035" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Img 20240117 125035</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/IMG_20240117_125133.jpg" alt="Img 20240117 125133" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Img 20240117 125133</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/IMG_20240117_125502.jpg" alt="Img 20240117 125502" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Img 20240117 125502</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/IMG_20240117_125835.jpg" alt="Img 20240117 125835" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Img 20240117 125835</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/IMG_20240117_174435.jpg" alt="Img 20240117 174435" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Img 20240117 174435</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/IMG_20240117_174620.jpg" alt="Img 20240117 174620" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Img 20240117 174620</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/IMG_20240117_175600.jpg" alt="Img 20240117 175600" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Img 20240117 175600</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/IMG_20240117_175652.jpg" alt="Img 20240117 175652" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Img 20240117 175652</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/IMG_20240117_175706.jpg" alt="Img 20240117 175706" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Img 20240117 175706</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/IMG_20240117_175851.jpg" alt="Img 20240117 175851" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Img 20240117 175851</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/IMG_20240117_175857.jpg" alt="Img 20240117 175857" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Img 20240117 175857</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/IMG_20240117_180043.jpg" alt="Img 20240117 180043" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Img 20240117 180043</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/IMG_20240804_211653.jpg" alt="Img 20240804 211653" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Img 20240804 211653</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/IMG_20241109_141143.jpg" alt="Img 20241109 141143" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Img 20241109 141143</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Lego%20cube.jpg" alt="Lego Cube" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Lego Cube</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Lim%C3%B3n.jpg" alt="Limón" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Limón</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Madheadz%20cascos.jpg" alt="Madheadz Cascos" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Madheadz Cascos</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Madheadz%20gui%C3%B1o.jpg" alt="Madheadz Guiño" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Madheadz Guiño</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Madheadz%20momia.jpg" alt="Madheadz Momia" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Madheadz Momia</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Manzana.jpg" alt="Manzana" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Manzana</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Marusenko.jpg" alt="Marusenko" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Marusenko</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Marusenko2.jpg" alt="Marusenko2" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Marusenko2</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Marusenko3.jpg" alt="Marusenko3" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Marusenko3</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Mastermorphix.jpg" alt="Mastermorphix" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Mastermorphix</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Megaminx.jpg" alt="Megaminx" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Megaminx</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Megamorphix.jpg" alt="Megamorphix" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Megamorphix</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Melocot%C3%B3n.jpg" alt="Melocotón" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Melocotón</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Mirror.jpg" alt="Mirror" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Mirror</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Mixup%20cube.jpg" alt="Mixup Cube" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Mixup Cube</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Mixup%20plus.jpg" alt="Mixup Plus" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Mixup Plus</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Naranja.jpg" alt="Naranja" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Naranja</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Nautilus.jpg" alt="Nautilus" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Nautilus</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Octaedro.jpg" alt="Octaedro" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Octaedro</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Pentagram%20cube.jpg" alt="Pentagram Cube" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Pentagram Cube</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Pera.jpg" alt="Pera" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Pera</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Piramynx.jpg" alt="Piramynx" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Piramynx</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Pl%C3%A1tano.jpg" alt="Plátano" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Plátano</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Pyramorphix%20firmado.jpg" alt="Pyramorphix Firmado" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Pyramorphix Firmado</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Skew%20hollow.jpg" alt="Skew Hollow" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Skew Hollow</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Skew%20skewed.jpg" alt="Skew Skewed" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Skew Skewed</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Skew.jpg" alt="Skew" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Skew</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Square%201.jpg" alt="Square 1" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Square 1</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Sudoku%20cube.jpg" alt="Sudoku Cube" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Sudoku Cube</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Tarta.jpg" alt="Tarta" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Tarta</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/The%20big%20X.jpg" alt="The Big X" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">The Big X</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Time%20machine.jpg" alt="Time Machine" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Time Machine</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/Two%20mirror%20cubes%20glued.jpg" alt="Two Mirror Cubes Glued" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Two Mirror Cubes Glued</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+    <div class="cube-card">
+      <div class="cube-img-wrapper">
+        <img src="/assets/images/Cubos/pentagonal%203x3x1%20mirror.jpg" alt="Pentagonal 3X3X1 Mirror" class="cube-img" />
+      </div>
+      <div class="cube-info">
+        <h3 class="cube-title">Pentagonal 3X3X1 Mirror</h3>
+        <p class="cube-desc"></p>
+      </div>
+    </div>
+  
+</div>
+
+      </section>
+
+    </div>
+  </body>
+</html>
