@@ -1,3 +1,6 @@
 theme: jekyll-theme-minimal
 title: Carlos González Bueno
-description: Welcome to my webpage!<br>Here are some links
+description: "Official website and professional portfolio of Carlos González Bueno."
+url: "https://carloszip.github.io"
+plugins:
+  - jekyll-sitemap

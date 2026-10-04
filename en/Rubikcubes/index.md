@@ -1,3 +1,7 @@
+---
+layout: default
+lang: en
+---
 # My collection
 Welcome to my cube collection! At this moment, I have **{{ site.data.cubos | size }}** cubes:
 

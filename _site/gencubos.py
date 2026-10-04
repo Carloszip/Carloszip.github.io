@@ -39,7 +39,7 @@ def generar_yaml_cubos():
                 f"  name_en: \"{nombre_legible}\"\n"
                 f"  desc_es: \"\"\n"
                 f"  desc_en: \"\"\n"
-                f"  image: \"{ruta_imagen_web}\"\n\n"
+                f"  image: \"{ruta_imagen_web}\"\n"
             )
             lineas_yaml.append(bloque_cubo)
             
