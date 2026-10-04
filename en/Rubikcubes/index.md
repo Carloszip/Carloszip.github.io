@@ -2,6 +2,10 @@
 layout: default
 lang: en
 ---
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6bf0312b16d4d6148aa7a397af4b780d922885fa
 # My collection
 Welcome to my cube collection! At this moment, I have **{{ site.data.cubos | size }}** cubes:
 
